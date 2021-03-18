@@ -1,13 +1,8 @@
 module Enumerable
+  def my_each
+    return to_enum(:my_each) unless block_given?
 
-    def my_each
-        return to_enum(:my_each) unless block_given?
-    
-        i = 0
-        while i < to_a.length
-          yield to_a[i]
-          i += 1
-        end
-        self
-    end 
+    to_a.length.times { |i| yield to_a[i] }
+    self
+  end
 end

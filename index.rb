@@ -1,5 +1,5 @@
-require_relative 'enumerable.rb'
+require_relative 'enumerable'
 
 # my_each test case
-a = [ "a", "b", "c" ]
-a.my_each {|x| print x, " -- " }
+a = %w[a b c]
+a.my_each { |x| print x, ' -- ' }
