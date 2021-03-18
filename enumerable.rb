@@ -14,4 +14,11 @@ module Enumerable
     to_a.length.times { |i| yield to_a[i], i }
     self
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+    
+    to_a.length.times { |i| yield(to_a[i]).positive? }
+    self
+  end
 end
