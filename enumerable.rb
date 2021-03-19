@@ -46,14 +46,35 @@ module Enumerable
   end
 
   # my_any?
+  def my_any?(arg = false)
 
-  def my_any?
-
-    bool = true
-    to_a.length.times { |i| bool && false unless yield to_a[i] }
+    bool = false
+    if block_given?
+      to_a.length.times { |i| bool = bool || true if yield to_a[i] }
+    elsif arg == true || arg == false
+      to_a.length.times { |i| bool = bool || true if to_a[i] }
+    elsif not arg.instance_of?(Class)
+      to_a.length.times { |i| bool = bool || true if to_a[i] == arg }
+    else
+      to_a.length.times { |i| bool = bool || true if to_a[i].is_a?(arg) }
+    end
     bool
   end
 
   # my_none?
+  def my_all?(arg = true)
+
+    bool = true
+    if block_given?
+      to_a.length.times { |i| bool = bool && false unless yield to_a[i] }
+    elsif arg == true || arg == false
+      to_a.length.times { |i| bool = bool && false unless to_a[i] }
+    elsif not arg.instance_of?(Class)
+      to_a.length.times { |i| bool = bool && false unless to_a[i] == arg }
+    else
+      to_a.length.times { |i| bool = bool && false unless to_a[i].is_a?(arg) }
+    end
+    bool
+  end
 
 end
