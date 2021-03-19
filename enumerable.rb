@@ -89,4 +89,13 @@ module Enumerable
       to_a.length
     end
   end
+
+  # my_map
+  def my_map (proc = nil)
+    return to_enum(:my_map) unless block_given?
+
+
+  end
+
+  
 end

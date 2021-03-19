@@ -47,8 +47,11 @@ end
 [nil, false, true].my_none? #=> false
 
 # my_count?
-
 ary = [1, 2, 4, 2]
 p ary.my_count? #=> 4
 p ary.my_count?(2) #=> 2
 p ary.my_count?(&:even?) #=> 3
+
+#my_map
+(1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+(1..4).my_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
