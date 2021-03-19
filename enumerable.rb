@@ -1,5 +1,4 @@
 module Enumerable
-
   # my_each method
 
   def my_each
@@ -30,65 +29,61 @@ module Enumerable
 
   # my_all?
 
-  def my_all?(arg = true)
-
+  def my_all?(param = true)
     bool = true
     if block_given?
-      to_a.length.times { |i| bool = bool && false unless yield to_a[i] }
-    elsif arg == true || arg == false
-      to_a.length.times { |i| bool = bool && false unless to_a[i] }
-    elsif not arg.instance_of?(Class)
-      to_a.length.times { |i| bool = bool && false unless to_a[i] == arg }
+      to_a.length.times { |i| bool &&= false unless yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool &&= false unless to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool &&= false unless to_a[i] == param }
     else
-      to_a.length.times { |i| bool = bool && false unless to_a[i].is_a?(arg) }
+      to_a.length.times { |i| bool &&= false unless to_a[i].is_a?(param) }
     end
     bool
   end
 
   # my_any?
 
-  def my_any?(arg = false)
-
+  def my_any?(param = false)
     bool = false
     if block_given?
-      to_a.length.times { |i| bool = bool || true if yield to_a[i] }
-    elsif arg == true || arg == false
-      to_a.length.times { |i| bool = bool || true if to_a[i] }
-    elsif not arg.instance_of?(Class)
-      to_a.length.times { |i| bool = bool || true if to_a[i] == arg }
+      to_a.length.times { |i| bool ||= true if yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool ||= true if to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool ||= true if to_a[i] == param }
     else
-      to_a.length.times { |i| bool = bool || true if to_a[i].is_a?(arg) }
+      to_a.length.times { |i| bool ||= true if to_a[i].is_a?(param) }
     end
     bool
   end
 
   # my_none?
 
-  def my_none?(arg = true)
-
+  def my_none?(param = true)
     bool = true
     if block_given?
-      to_a.length.times { |i| bool = bool && false if yield to_a[i] }
-    elsif arg == true || arg == false
-      to_a.length.times { |i| bool = bool && false if to_a[i] }
-    elsif not arg.instance_of?(Class)
-      to_a.length.times { |i| bool = bool && false if to_a[i] == arg }
+      to_a.length.times { |i| bool &&= false if yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool &&= false if to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool &&= false if to_a[i] == param }
     else
-      to_a.length.times { |i| bool = bool && false if to_a[i].is_a?(arg) }
+      to_a.length.times { |i| bool &&= false if to_a[i].is_a?(param) }
     end
     bool
   end
 
   # my_count?
 
-  def my_count?(arg = nil)
-
+  def my_count?(param = nil)
     arr = []
     if block_given?
       to_a.length.times { |i| arr.push(to_a[i]) if yield to_a[i] }
       arr.length
-    elsif arg != nil || to_a.my_any? == nil
-      to_a.length.times { |i| arr.push(to_a[i]) if to_a[i] == arg }
+    elsif !param.nil? || to_a.my_any?.nil?
+      to_a.length.times { |i| arr.push(to_a[i]) if to_a[i] == param }
       arr.length
     else
       to_a.length
