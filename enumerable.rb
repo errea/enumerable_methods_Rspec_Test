@@ -89,4 +89,17 @@ module Enumerable
       to_a.length
     end
   end
+
+  # my_map
+
+  def my_map
+    return to_enum(:my_map) unless block_given?
+
+    arr = []
+    to_a.length.times { |i| arr.push(yield to_a[i]) }
+    arr
+  end
+
+  # my_inject
+
 end

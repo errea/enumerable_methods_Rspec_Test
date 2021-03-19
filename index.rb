@@ -49,6 +49,16 @@ end
 # my_count?
 
 ary = [1, 2, 4, 2]
-p ary.my_count? #=> 4
-p ary.my_count?(2) #=> 2
-p ary.my_count?(&:even?) #=> 3
+ary.my_count? #=> 4
+ary.my_count?(2) #=> 2
+ary.my_count?(&:even?) #=> 3
+
+# my_map
+a = [ "a", "b", "c", "d" ]
+p a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+p (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
+p (1..4).my_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
+double = Proc.new { |n| n * 2 }
+p [1, 2, 3].map(&double)
+
+
