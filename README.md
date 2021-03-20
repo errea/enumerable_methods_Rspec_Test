@@ -8,9 +8,6 @@ This is the first project that welcomes us into the Ruby Section of the *Microve
 ### Project 2: Enumerable Methods
 You learned about the Enumerable module that gets mixed into the Array and Hash classes (among others) and provides you with lots of handy iterator methods.  To prove that there's no magic to it, you're going to rebuild those methods.
 
-### Project 2: Enumerable Methods
-You learned about the Enumerable module that gets mixed into the Array and Hash classes (among others) and provides you with lots of handy iterator methods.  To prove that there's no magic to it, you're going to rebuild those methods.
-
 ### Assignment 2
 
 <div class="lesson-content__panel" markdown="1">
