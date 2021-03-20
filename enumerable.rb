@@ -92,15 +92,24 @@ module Enumerable
 
   # my_map
 
-  def my_map
-    return to_enum(:my_map) unless block_given?
+
+  def my_map(outer_proc = nil)
+    return to_enum(:my_map) unless block_given? || !proc.nil?
 
     arr = []
-    to_a.length.times { |i| arr.push(yield to_a[i]) }
+    if outer_proc.respond_to? :call
+      to_a.length.times { |i| arr.push(outer_proc.call to_a[i]) }
+    else
+      to_a.length.times { |i| arr.push(yield to_a[i]) }
+    end
     arr
   end
 
   # my_inject
   
 
+
+
+
+  
 end
