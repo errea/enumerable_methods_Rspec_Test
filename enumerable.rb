@@ -1,3 +1,5 @@
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
 module Enumerable
   # my_each method
 
@@ -100,7 +102,14 @@ module Enumerable
     arr
   end
 
-  # my_inject
-  
+
+  #my_inject
+  def my_inject(initial = nil, sym = nil)
+      if (!initial.nil? && sym.nil?) && (initial.is_a?(Symbol) || initial.is_a?(String))
+        sym = initial
+        initial = nil
+      end
+    
+  end
 
 end
