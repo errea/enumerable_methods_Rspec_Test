@@ -54,21 +54,20 @@ ary.my_count?(&:even?) #=> 3
 
 # my_map
 a = %w[a b c d]
-a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+a.my_map.with_index { |x, i| x * i } #=> ["", "b", "cc", "ddd"]
 (1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
 (1..4).my_map { 'cat' } #=> ["cat", "cat", "cat", "cat"]
 my_proc = proc { |i| i * i }
 (1..5).my_map(my_proc) { |i| i + i }
 
-
 # my_inject
 
-#Sum some numbers
-(5..10).my_inject(:+)                             #=> 45
-#Same using a block and inject
-(5..10).my_inject { |sum, n| sum + n }            #=> 45
-#Multiply some numbers
-(5..10).my_inject(1, :*)                          #=> 151200
+# Sum some numbers
+(5..10).my_inject(:+) #=> 45
+# Same using a block and inject
+(5..10).my_inject { |sum, n| sum + n } #=> 45
+# Multiply some numbers
+(5..10).my_inject(1, :*) #=> 151200
 
 arr1 = [1, 2, 3]
 multiply_els(arr1)
