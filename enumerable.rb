@@ -111,5 +111,26 @@ module Enumerable
 
   # my_inject
 
+  def my_inject(initial = nil, sym = nil)
+    array = to_a
+    if initial.nil?
+      result = array[0]
+      array[1..-1].my_each { |index| result = yield(result, index) }
+    elsif block_given?
+      result = initial
+      array.my_each { |index| result = yield(result, index) }
+    elsif initial && sym
+      result = initial
+      array.my_each { |index| result = result.send(sym, index) }
+    elsif initial.is_a? Integer
+      result = init
+      array.my_each { |index| result += index }
+    else
+      result = array[0]
+      array[1..-1].my_each { |index| result = result.send(initial, index) }
+    end
+    result
+  end
+
   # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 end
