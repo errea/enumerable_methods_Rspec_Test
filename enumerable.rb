@@ -31,7 +31,8 @@ module Enumerable
 
   # my_all?
 
-  def my_all?(param = true)
+  def my_all?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false unless yield to_a[i] }
@@ -47,7 +48,8 @@ module Enumerable
 
   # my_any?
 
-  def my_any?(param = false)
+  def my_any?(param = nil)
+    param = false if param.nil?
     bool = false
     if block_given?
       to_a.length.times { |i| bool ||= true if yield to_a[i] }
@@ -63,7 +65,8 @@ module Enumerable
 
   # my_none?
 
-  def my_none?(param = true)
+  def my_none?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false if yield to_a[i] }
@@ -94,22 +97,19 @@ module Enumerable
 
   # my_map
 
-  def my_map
-    return to_enum(:my_map) unless block_given?
+  def my_map(outer_proc = nil)
+    return to_enum(:my_map) unless block_given? || !outer_proc.nil?
 
     arr = []
-    to_a.length.times { |i| arr.push(yield to_a[i]) }
+    if outer_proc.respond_to? :call
+      to_a.length.times { |i| arr.push(outer_proc.call(to_a[i])) }
+    else
+      to_a.length.times { |i| arr.push(yield to_a[i]) }
+    end
     arr
   end
 
+  # my_inject
 
-  #my_inject
-  def my_inject(initial = nil, sym = nil)
-      if (!initial.nil? && sym.nil?) && (initial.is_a?(Symbol) || initial.is_a?(String))
-        sym = initial
-        initial = nil
-      end
-    
-  end
-
+  # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 end
