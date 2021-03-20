@@ -9,31 +9,76 @@ hash = {}
 %w[cat dog wombat].my_each_with_index do |item, index|
   hash[item] = index
 end
-p hash
 
 %w[cat dog wombat].my_each_with_index do |item, index|
-  p "#{index}_#{item}"
+  "#{index}_#{item}"
 end
 
 # my_select test case
-p (1..10).my_select { |i|  i % 3 == 0 }   #=> [3, 6, 9]
-p [1,2,3,4,5].my_select { |num|  num.even?  }   #=> [2, 4]
-p [1,2,3,4,5].my_select { |num|  num > 3  }   #=> [4, 5]
-p [:foo, :bar].my_select { |x| x == :foo }
+(1..10).my_select { |i| (i % 3).zero? } #=> [3, 6, 9]
+[1, 2, 3, 4, 5].my_select(&:even?) #=> [2, 4]
+[1, 2, 3, 4, 5].my_select { |num| num > 3 } #=> [4, 5]
+%i[foo bar].my_select { |x| x == :foo }
 
 # all?
-p %w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
-p %w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
-p %w[ant bear cat].my_all?(/t/)                        #=> false
-p [1, 2i, 3.14].my_all?(Numeric)                       #=> true
-p [nil, true, 99].my_all?                              #=> false
-p [].my_all?                                           #=> true
+%w[ant bear cat].my_all? { |word| word.length >= 3 } #=> true
+%w[ant bear cat].my_all? { |word| word.length >= 4 } #=> false
+%w[ant bear cat].my_all?(/t/) #=> false
+[1, 2i, 3.14].my_all?(Numeric) #=> true
+[nil, true, 99].my_all? #=> false
+[].my_all? #=> true
 
 # any?
-%w[ant bear cat].any? { |word| word.length >= 3 } #=> true
-%w[ant bear cat].any? { |word| word.length >= 4 } #=> true
-%w[ant bear cat].any?(/d/)                        #=> false
-[nil, true, 99].any?(Integer)                     #=> true
-[nil, true, 99].any?                              #=> true
-[].any?                                           #=> false
+%w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
+%w[ant bear cat].my_any? { |word| word.length >= 4 } #=> true
+%w[ant bear cat].my_any?(/d/) #=> false
+[nil, true, 99].my_any?(Integer) #=> true
+[nil, true, 99].my_any? #=> true
+[].my_any? #=> false
 
+# my_none?
+%w[ant bear cat].my_none? { |word| word.length == 5 } #=> true
+%w[ant bear cat].my_none? { |word| word.length >= 4 } #=> false
+%w[ant bear cat].my_none?(/d/) #=> true
+[1, 3.14, 42].my_none?(Float) #=> false
+[].my_none? #=> true
+[nil].my_none? #=> true
+[nil, false].my_none? #=> true
+[nil, false, true].my_none? #=> false
+
+# my_count?
+ary = [1, 2, 4, 2]
+ary.my_count? #=> 4
+ary.my_count?(2) #=> 2
+ary.my_count?(&:even?) #=> 3
+
+# my_map
+a = %w[a b c d]
+a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+(1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
+(1..4).my_map { 'cat' } #=> ["cat", "cat", "cat", "cat"]
+my_proc = proc { |i| i * i }
+(1..5).my_map(my_proc) { |i| i + i }
+
+# # other_map
+# a = [ "a", "b", "c", "d" ]
+# p a.other_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+# p (1..4).other_map { |i| i*i }      #=> [1, 4, 9, 16]
+# p (1..4).other_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
+# double = Proc.new { |n| n * 2 }
+# p [1, 2, 3].other_map(&double)
+
+# my_inject
+# Sum some numbers
+# (5..10).my_inject(:+)                             #=> 45
+# Same using a block and inject
+# (5..10).my_inject { |sum, n| sum + n }            #=> 45
+# Multiply some numbers
+# (5..10).my_inject(1, :*)                          #=> 151200
+# Same using a block
+# (5..10).my_inject(1) { |product, n| product * n } #=> 151200
+# find the longest word
+# longest = %w{ cat sheep bear }.my_inject do |memo, word|
+#   memo.length > word.length ? memo : word
+# end
+# longest                                        #=> "sheep"

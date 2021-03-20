@@ -1,5 +1,6 @@
-module Enumerable
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
+module Enumerable
   # my_each method
 
   def my_each
@@ -30,30 +31,85 @@ module Enumerable
 
   # my_all?
 
-  def my_all?(arg = true)
-
+  def my_all?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
-      to_a.length.times { |i| bool = bool && false unless yield to_a[i] }
-    elsif arg == true || arg == false
-      to_a.length.times { |i| bool = bool && false unless to_a[i] }
-    elsif not arg.instance_of?(Class)
-      to_a.length.times { |i| bool = bool && false unless to_a[i] == arg }
+      to_a.length.times { |i| bool &&= false unless yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool &&= false unless to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool &&= false unless to_a[i] == param }
     else
-      to_a.length.times { |i| bool = bool && false unless to_a[i].is_a?(arg) }
+      to_a.length.times { |i| bool &&= false unless to_a[i].is_a?(param) }
     end
     bool
   end
 
   # my_any?
 
-  def my_any?
-
-    bool = true
-    to_a.length.times { |i| bool && false unless yield to_a[i] }
+  def my_any?(param = nil)
+    param = false if param.nil?
+    bool = false
+    if block_given?
+      to_a.length.times { |i| bool ||= true if yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool ||= true if to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool ||= true if to_a[i] == param }
+    else
+      to_a.length.times { |i| bool ||= true if to_a[i].is_a?(param) }
+    end
     bool
   end
 
   # my_none?
 
+  def my_none?(param = nil)
+    param = true if param.nil?
+    bool = true
+    if block_given?
+      to_a.length.times { |i| bool &&= false if yield to_a[i] }
+    elsif [true, false].include?(param)
+      to_a.length.times { |i| bool &&= false if to_a[i] }
+    elsif !param.instance_of?(Class)
+      to_a.length.times { |i| bool &&= false if to_a[i] == param }
+    else
+      to_a.length.times { |i| bool &&= false if to_a[i].is_a?(param) }
+    end
+    bool
+  end
+
+  # my_count?
+
+  def my_count?(param = nil)
+    arr = []
+    if block_given?
+      to_a.length.times { |i| arr.push(to_a[i]) if yield to_a[i] }
+      arr.length
+    elsif !param.nil? || to_a.my_any?.nil?
+      to_a.length.times { |i| arr.push(to_a[i]) if to_a[i] == param }
+      arr.length
+    else
+      to_a.length
+    end
+  end
+
+  # my_map
+
+  def my_map(outer_proc = nil)
+    return to_enum(:my_map) unless block_given? || !outer_proc.nil?
+
+    arr = []
+    if outer_proc.respond_to? :call
+      to_a.length.times { |i| arr.push(outer_proc.call(to_a[i])) }
+    else
+      to_a.length.times { |i| arr.push(yield to_a[i]) }
+    end
+    arr
+  end
+
+  # my_inject
+
+  # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 end
