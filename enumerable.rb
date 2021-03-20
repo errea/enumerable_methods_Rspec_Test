@@ -1,3 +1,5 @@
+# rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
 module Enumerable
   # my_each method
 
@@ -29,7 +31,8 @@ module Enumerable
 
   # my_all?
 
-  def my_all?(param = true)
+  def my_all?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false unless yield to_a[i] }
@@ -45,7 +48,8 @@ module Enumerable
 
   # my_any?
 
-  def my_any?(param = false)
+  def my_any?(param = nil)
+    param = false if param.nil?
     bool = false
     if block_given?
       to_a.length.times { |i| bool ||= true if yield to_a[i] }
@@ -61,7 +65,8 @@ module Enumerable
 
   # my_none?
 
-  def my_none?(param = true)
+  def my_none?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false if yield to_a[i] }
@@ -92,13 +97,12 @@ module Enumerable
 
   # my_map
 
-
   def my_map(outer_proc = nil)
-    return to_enum(:my_map) unless block_given? || !proc.nil?
+    return to_enum(:my_map) unless block_given? || !outer_proc.nil?
 
     arr = []
     if outer_proc.respond_to? :call
-      to_a.length.times { |i| arr.push(outer_proc.call to_a[i]) }
+      to_a.length.times { |i| arr.push(outer_proc.call(to_a[i])) }
     else
       to_a.length.times { |i| arr.push(yield to_a[i]) }
     end
@@ -106,10 +110,6 @@ module Enumerable
   end
 
   # my_inject
-  
 
-
-
-
-  
+  # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 end

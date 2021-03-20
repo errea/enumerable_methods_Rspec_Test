@@ -53,12 +53,12 @@ ary.my_count?(2) #=> 2
 ary.my_count?(&:even?) #=> 3
 
 # my_map
-a = [ "a", "b", "c", "d" ]
-#p a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
-p (1..4).my_map { |i| i*i }      #=> [1, 4, 9, 16]
-p (1..4).my_map { "cat"  }   #=> ["cat", "cat", "cat", "cat"]
+a = %w[a b c d]
+a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+(1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
+(1..4).my_map { 'cat' } #=> ["cat", "cat", "cat", "cat"]
 my_proc = proc { |i| i * i }
-p (1..5).my_map(my_proc) { |i| i + i }
+(1..5).my_map(my_proc) { |i| i + i }
 
 # # other_map
 # a = [ "a", "b", "c", "d" ]
@@ -68,19 +68,17 @@ p (1..5).my_map(my_proc) { |i| i + i }
 # double = Proc.new { |n| n * 2 }
 # p [1, 2, 3].other_map(&double)
 
-
-
-#my_inject
+# my_inject
 # Sum some numbers
-#(5..10).my_inject(:+)                             #=> 45
+# (5..10).my_inject(:+)                             #=> 45
 # Same using a block and inject
-#(5..10).my_inject { |sum, n| sum + n }            #=> 45
+# (5..10).my_inject { |sum, n| sum + n }            #=> 45
 # Multiply some numbers
-#(5..10).my_inject(1, :*)                          #=> 151200
+# (5..10).my_inject(1, :*)                          #=> 151200
 # Same using a block
-#(5..10).my_inject(1) { |product, n| product * n } #=> 151200
+# (5..10).my_inject(1) { |product, n| product * n } #=> 151200
 # find the longest word
-#longest = %w{ cat sheep bear }.my_inject do |memo, word|
+# longest = %w{ cat sheep bear }.my_inject do |memo, word|
 #   memo.length > word.length ? memo : word
-#end
-#longest                                        #=> "sheep"
+# end
+# longest                                        #=> "sheep"
