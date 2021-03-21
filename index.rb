@@ -54,7 +54,7 @@ ary.my_count?(&:even?) #=> 3
 
 # my_map
 a = %w[a b c d]
-a.my_map.with_index {|x, i| x * i}   #=> ["", "b", "cc", "ddd"]
+a.my_map.with_index { |x, i| x * i } #=> ["", "b", "cc", "ddd"]
 (1..4).my_map { |i| i * i } #=> [1, 4, 9, 16]
 (1..4).my_map { 'cat' } #=> ["cat", "cat", "cat", "cat"]
 my_proc = proc { |i| i * i }
@@ -69,12 +69,12 @@ my_proc = proc { |i| i * i }
 # [1, 2, 3].other_map(&double)
 
 # my_inject
- #Sum some numbers
- p (5..10).my_inject(:+)                             #=> 45
- #Same using a block and inject
-p (5..10).my_inject { |sum, n| sum + n }            #=> 45
- #Multiply some numbers
-p (5..10).my_inject(1, :*)                          #=> 151200
+# Sum some numbers
+p (5..10).my_inject(:+) #=> 45
+# Same using a block and inject
+p(5..10).my_inject { |sum, n| sum + n } #=> 45
+# Multiply some numbers
+p (5..10).my_inject(1, :*) #=> 151200
 # Same using a block
 # (5..10).my_inject(1) { |product, n| product * n } #=> 151200
 # find the longest word

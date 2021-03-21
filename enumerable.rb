@@ -1,5 +1,4 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-
 module Enumerable
   # my_each method
 
@@ -132,7 +131,7 @@ module Enumerable
     result
   end
 
-  #multiply_els
+  # multiply_els
   def multiply_els(arr)
     arr.my_inject { |multiply, index| multiply * index }
   end
