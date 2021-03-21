@@ -66,10 +66,10 @@ my_proc = proc { |i| i * i }
 # my_inject
 
 # Sum some numbers
-(5..10).my_inject(:+) #=> 45
+p (5..10).my_inject(:+) #=> 45
 # Same using a block and inject
-(5..10).my_inject { |sum, n| sum + n } #=> 45
+p(5..10).my_inject { |sum, n| sum + n } #=> 45
 # Multiply some numbers
-(5..10).my_inject(1, :*) #=> 151200
+p (5..10).my_inject(1, :*) #=> 151200
 
 multiply_els([1, 2, 3])
