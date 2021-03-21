@@ -32,6 +32,7 @@ module Enumerable
   # my_all?
 
   def my_all?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false unless yield to_a[i] }
@@ -48,6 +49,7 @@ module Enumerable
   # my_any?
 
   def my_any?(param = nil)
+    param = false if param.nil?
     bool = false
     if block_given?
       to_a.length.times { |i| bool ||= true if yield to_a[i] }
@@ -64,6 +66,7 @@ module Enumerable
   # my_none?
 
   def my_none?(param = nil)
+    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false if yield to_a[i] }
@@ -79,7 +82,7 @@ module Enumerable
 
   # my_count?
 
-  def my_count?(param = nil)
+  def my_count(param = nil)
     arr = []
     if block_given?
       to_a.length.times { |i| arr.push(to_a[i]) if yield to_a[i] }

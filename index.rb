@@ -46,11 +46,11 @@ end
 [nil, false].my_none? #=> true
 [nil, false, true].my_none? #=> false
 
-# my_count?
+# my_count
 ary = [1, 2, 4, 2]
-ary.my_count? #=> 4
-ary.my_count?(2) #=> 2
-ary.my_count?(&:even?) #=> 3
+ary.my_count #=> 4
+ary.my_count(2) #=> 2
+ary.my_count(&:even?) #=> 3
 
 # my_map
 a = %w[a b c d]
