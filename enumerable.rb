@@ -29,6 +29,8 @@ module Enumerable
       to_a.length.times { |i| bool &&= false unless yield to_a[i] }
     elsif [true, false].include?(param)
       to_a.length.times { |i| bool &&= false unless to_a[i] }
+    elsif param.instance_of?(Regexp)
+      to_a.length.times { |i| bool &&= false unless to_a[i] =~ param }
     elsif !param.instance_of?(Class)
       to_a.length.times { |i| bool &&= false unless to_a[i] == param }
     else
@@ -44,6 +46,8 @@ module Enumerable
       to_a.length.times { |i| bool ||= true if yield to_a[i] }
     elsif [true, false].include?(param)
       to_a.length.times { |i| bool ||= true if to_a[i] }
+    elsif param.instance_of?(Regexp)
+      to_a.length.times { |i| bool ||= true if to_a[i] =~ param }
     elsif !param.instance_of?(Class)
       to_a.length.times { |i| bool ||= true if to_a[i] == param }
     else
@@ -59,6 +63,8 @@ module Enumerable
       to_a.length.times { |i| bool &&= false if yield to_a[i] }
     elsif [true, false].include?(param)
       to_a.length.times { |i| bool &&= false if to_a[i] }
+    elsif param.instance_of?(Regexp)
+      to_a.length.times { |i| bool &&= false if to_a[i] =~ param }
     elsif !param.instance_of?(Class)
       to_a.length.times { |i| bool &&= false if to_a[i] == param }
     else
