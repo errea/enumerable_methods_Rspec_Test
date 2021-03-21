@@ -1,5 +1,5 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-module Enumerable
+module Enumerable1
   def my_each
     return to_enum(:my_each) unless block_given?
 
@@ -87,7 +87,9 @@ module Enumerable
       to_a.length
     end
   end
+end
 
+module Enumerable2
   def my_map(outer_proc = nil)
     return to_enum(:my_map, outer_proc) unless block_given? || !outer_proc.nil?
 
