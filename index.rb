@@ -33,7 +33,7 @@ end
 %w[ant bear cat].my_any? { |word| word.length >= 3 } #=> true
 %w[ant bear cat].my_any? { |word| word.length >= 4 } #=> true
 %w[ant bear cat].my_any?(/d/) #=> false
-%w[dog door rod blade].my_any?(/d/)  # => true
+%w[dog door rod blade].my_any?(/d/) # => true
 [nil, true, 99].my_any?(Integer) #=> true
 [nil, true, 99].my_any? #=> true
 [].my_any? #=> false
@@ -42,7 +42,7 @@ end
 %w[ant bear cat].my_none? { |word| word.length == 5 } #=> true
 %w[ant bear cat].my_none? { |word| word.length >= 4 } #=> false
 %w[ant bear cat].my_none?(/d/) #=> true
-%w[dog door rod blade].my_none?(/d/)  # => false
+%w[dog door rod blade].my_none?(/d/) # => false
 [1, 3.14, 42].my_none?(Float) #=> false
 [].my_none? #=> true
 [nil].my_none? #=> true
