@@ -1,7 +1,5 @@
 # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-
 module Enumerable
-  # my_each method
 
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -10,16 +8,12 @@ module Enumerable
     self
   end
 
-  # each_with_index
-
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
     to_a.length.times { |i| yield to_a[i], i }
     self
   end
-
-  # my_select
 
   def my_select
     return to_enum(:my_select) unless block_given?
@@ -28,8 +22,6 @@ module Enumerable
     to_a.length.times { |i| arr.push(to_a[i]) if yield to_a[i] }
     arr
   end
-
-  # my_all?
 
   def my_all?(param = nil)
     param = true if param.nil?
@@ -46,8 +38,6 @@ module Enumerable
     bool
   end
 
-  # my_any?
-
   def my_any?(param = nil)
     param = false if param.nil?
     bool = false
@@ -62,8 +52,6 @@ module Enumerable
     end
     bool
   end
-
-  # my_none?
 
   def my_none?(param = nil)
     param = true if param.nil?
@@ -95,8 +83,6 @@ module Enumerable
     end
   end
 
-  # my_map
-
   def my_map(outer_proc = nil)
     return to_enum(:my_map, outer_proc) unless block_given? || !outer_proc.nil?
 
@@ -108,8 +94,6 @@ module Enumerable
     end
     arr
   end
-
-  # my_inject
 
   def my_inject(initial = nil, sym = nil)
     result = initial
@@ -129,6 +113,9 @@ module Enumerable
     result
   end
 
+  def multiply_els(arr)
+    arr.my_inject { |multiply, index| multiply * index }
+  end
   # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 end
 
