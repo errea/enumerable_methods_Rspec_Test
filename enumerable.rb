@@ -32,7 +32,6 @@ module Enumerable
   # my_all?
 
   def my_all?(param = nil)
-    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false unless yield to_a[i] }
@@ -49,7 +48,6 @@ module Enumerable
   # my_any?
 
   def my_any?(param = nil)
-    param = false if param.nil?
     bool = false
     if block_given?
       to_a.length.times { |i| bool ||= true if yield to_a[i] }
@@ -66,7 +64,6 @@ module Enumerable
   # my_none?
 
   def my_none?(param = nil)
-    param = true if param.nil?
     bool = true
     if block_given?
       to_a.length.times { |i| bool &&= false if yield to_a[i] }
@@ -98,7 +95,7 @@ module Enumerable
   # my_map
 
   def my_map(outer_proc = nil)
-    return to_enum(:my_map) unless block_given? || !outer_proc.nil?
+    return to_enum(:my_map, outer_proc) unless block_given? || !outer_proc.nil?
 
     arr = []
     if outer_proc.respond_to? :call
@@ -112,29 +109,26 @@ module Enumerable
   # my_inject
 
   def my_inject(initial = nil, sym = nil)
-    array = to_a
+    result = initial
     if initial.nil?
-      result = array[0]
-      array[1..-1].my_each { |index| result = yield(result, index) }
+      result = to_a[0]
+      to_a[1..-1].my_each { |index| result = yield(result, index) }
     elsif block_given?
-      result = initial
-      array.my_each { |index| result = yield(result, index) }
+      to_a.my_each { |index| result = yield(result, index) }
     elsif initial && sym
-      result = initial
-      array.my_each { |index| result = result.send(sym, index) }
+      to_a.my_each { |index| result = result.send(sym, index) }
     elsif initial.is_a? Integer
-      result = init
-      array.my_each { |index| result += index }
+      to_a.my_each { |index| result += index }
     else
-      result = array[0]
-      array[1..-1].my_each { |index| result = result.send(initial, index) }
+      result = to_a[0]
+      to_a[1..-1].my_each { |index| result = result.send(initial, index) }
     end
     result
   end
 
-  def multiply_els(arr)
-    arr.my_inject(1, :*)
-  end
-
   # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+end
+
+def multiply_els(arr)
+  arr.my_inject(1, :*)
 end

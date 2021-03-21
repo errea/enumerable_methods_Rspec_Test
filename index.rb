@@ -69,5 +69,4 @@ my_proc = proc { |i| i * i }
 # Multiply some numbers
 (5..10).my_inject(1, :*) #=> 151200
 
-arr1 = [1, 2, 3]
-multiply_els(arr1)
+p multiply_els([1, 2, 3])
