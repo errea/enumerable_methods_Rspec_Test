@@ -5,24 +5,58 @@
 
 This is the first project that welcomes us into the Ruby Section of the *Microverse Remote Software Development Curriculum*.
 
-This is a quick extract that helps explains the underlying concepts of bubble sort
+### Project 2: Enumerable Methods
+This Project was collaborative, I and my coding partner learned about the Enumerable module that gets mixed into the Array and Hash classes (among others) and provides you with lots of handy iterator methods.  To prove that there's no magic to it, you're going to rebuild those methods.
 
-### Bubble Sort Algorithm: Steps on how it works:
+### Advanced Building Blocks  (Assignment 2)
 
-In an unsorted array of 5 elements, start with the first two elements and sort them in ascending order. (Compare the element to check which one is greater).
+<div class="lesson-content__panel" markdown="1">
 
-- Compare the second and third element to check which one is greater, and sort them in ascending order.
-- Compare the third and fourth element to check which one is greater, and sort them in ascending order.
-- Compare the fourth and fifth element to check which one is greater, and sort them in ascending order.
-- Repeat steps 1–5 until no more swaps are required.
+1. First we created a script file to house our methods called enumerable.rb and run it in IRB to test them later.
+2. We had to add  new methods onto the existing Enumerable module.  Description is seen below:
 
-Simple right? Below is a simple animated illustration:
+~~~ruby
+  module Enumerable
+    def my_each
+      # your code here
+    end
+  end
+~~~
 
-![screenshot](./img/illustration.gif)
+3. We created our enumerable_methods in the enumerable.rb file as follows:
+
+  i. `#my_each`, a method that is identical to `#each` but (obviously) does not use `#each`.  
+
+ii.  `#my_each_with_index`
+
+iii.  `#my_select`
+
+iv. `#my_all?`
+
+v. `#my_any?`
+
+vi. `#my_none?`
+
+vii `#my_count`
+
+viii. `#my_map`
+
+  ix. `#my_inject`
+
+### Extra Requirements on the projecct
+
+  We had to test our `#my_inject` by creating a method called `#multiply_els` which multiplies all the elements of the array together by using `#my_inject`, e.g. `multiply_els([2,4,5]) #=> 40`
+
+We had to modify our `#my_map` method to take a proc instead.
+
+We were also required to modify our `#my_map` method to take either a proc or a block. 
+
+</div>
 
 ## Built With
 
 - Ruby
+-  VsCode
 
 ## Live Code
 
@@ -39,7 +73,7 @@ $ cd <folder>
 ```
 
 ```
-$ git clone https://github.com/errea/bubble_sort_ruby.git
+$ git clone https://github.com/John-Arboleda/enumerable_methods.git
 ```
 
 ## Authors
@@ -53,15 +87,14 @@ $ git clone https://github.com/errea/bubble_sort_ruby.git
 👤 **John**
 
 - Github: [John](https://github.com/John-Arboleda)
-- Twitter: [John](https://twitter.com/John_J_Arboleda
-)
+- Twitter: [John](https://twitter.com/John_J_Arboleda)
 - Linkedin: [john-jairo-arboleda-castillo](https://www.linkedin.com/in/john-jairo-arboleda-castillo/)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/errea/bubble_sort_ruby/issues).
+Feel free to check the [issues page](https://github.com/John-Arboleda/enumerable_methods/issues).
 
 ## Show your support
 
