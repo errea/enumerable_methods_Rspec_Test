@@ -76,6 +76,31 @@ $ cd <folder>
 $ git clone https://github.com/John-Arboleda/enumerable_methods.git
 ```
 
+### Test
+In order to run the tests, first you have to have the rspec gem installed in your PC.
+For that, run `gem install rspec`
+
+Then you can check if the rspec was succesfully installed by running `rspec --version`.
+
+Finally, just as for the previous steps, you have to go to the project location on your computer. Then, run `rspec`.
+
+You can manipulate and check the tests on the following files, located in ./testing/spec:
+- `enumerable_spec.rb`
+
+
+#### Methods being tested
+- `#my_each`
+- `#my_each_with_index`
+- `#my_select`
+- `#my_all?`
+- `#my_any?`
+- `#my_none?`
+- `#my_count`
+- `#my_map`
+- `#my_inject`
+- `multiply_els(arr)`
+
+
 ## Authors
 
 👤 **Eri**
@@ -89,6 +114,12 @@ $ git clone https://github.com/John-Arboleda/enumerable_methods.git
 - Github: [John](https://github.com/John-Arboleda)
 - Twitter: [John](https://twitter.com/John_J_Arboleda)
 - Linkedin: [john-jairo-arboleda-castillo](https://www.linkedin.com/in/john-jairo-arboleda-castillo/)
+
+👤 **Fernando**
+
+- Github: [fernandorpm](https://github.com/fernandorpm)
+- Twitter: [@rpm_fernando](https://twitter.com/rpm_fernando)
+- Linkedin: [Fernando R P Marques](https://www.linkedin.com/in/fernandorpm/)
 
 ## 🤝 Contributing
 
