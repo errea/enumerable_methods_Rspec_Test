@@ -39,23 +39,37 @@ describe 'Enumerable' do
 		end
 	end
     
-    describe 'my_any' do
-        it 'Checking my_any is working' do
-            expect(words_array.my_any? { |word| word.length >= 3 }).to be true
-            expect(words_array.my_any?(/d/)).to be true
-            expect(words_array.my_any?(Integer)).to be false
-            expect(empty_array.my_any?).to be false
-        end
+  describe 'my_any' do
+    it 'Checking my_any is working' do
+      expect(words_array.my_any? { |word| word.length >= 3 }).to be true
+      expect(words_array.my_any?(/d/)).to be true
+      expect(words_array.my_any?(Integer)).to be false
+      expect(empty_array.my_any?).to be false
     end
+  end
 
-    describe 'my_none' do
-        it 'Checking my_none is working' do
-            expect(words_array.my_none?{ |word| word.length == 5 }).to be false
-            expect(words_array.my_none?(/d/)). to be false
-            expect(words_array.my_none?(Float)).to be true
-            expect(empty_array.my_none?).to be true
-            expect(false_arr.my_none?).to be true
-            expect(true_arr.my_none?).to be false
-        end
+  describe 'my_none' do
+    it 'Checking my_none is working' do
+      expect(words_array.my_none?{ |word| word.length == 5 }).to be false
+      expect(words_array.my_none?(/d/)). to be false
+      expect(words_array.my_none?(Float)).to be true
+      expect(empty_array.my_none?).to be true
+      expect(false_arr.my_none?).to be true
+      expect(true_arr.my_none?).to be false
     end
+  end
+
+	describe 'my_count' do
+		it 'Checking my_count is working' do
+			expect(number_array.my_count).to eql(10)
+			expect(number_array.my_count(1)).to eql(1)
+		end
+	end
+
+	describe 'my_map' do
+		it 'Checking my_map is working' do
+			expect(number_array.my_map { |number| number+2 }).to eq(number_array.map { |number| number+2 })
+			expect((4..15).my_map { |number| number * 2 }).to eq((4..15).map { |number| number * 2 })
+		end
+	end
 end
