@@ -90,6 +90,12 @@ $ git clone https://github.com/John-Arboleda/enumerable_methods.git
 - Twitter: [John](https://twitter.com/John_J_Arboleda)
 - Linkedin: [john-jairo-arboleda-castillo](https://www.linkedin.com/in/john-jairo-arboleda-castillo/)
 
+👤 **Rolando(test)**
+
+- GitHub: [@Rolando](https://github.com/kiranitor123)
+- Twitter: [@rolando](https://twitter.com/FayeRolando)
+- LinkedIn: [Rolando](https://www.linkedin.com/in/rolando-diego-alvarez-faye-b2b34a1a9/)
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
