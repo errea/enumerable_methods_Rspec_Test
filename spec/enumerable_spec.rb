@@ -68,8 +68,16 @@ describe 'Enumerable' do
 
 	describe 'my_map' do
 		it 'Checking my_map is working' do
-			expect(number_array.my_map { |number| number+2 }).to eq(number_array.map { |number| number+2 })
+			expect(number_array.my_map { |number| number + 2 }).to eq(number_array.map { |number| number + 2 })
 			expect((4..15).my_map { |number| number * 2 }).to eq((4..15).map { |number| number * 2 })
 		end
 	end
-end
+
+    describe 'my_inject' do
+        it 'Checking my_inject is working' do
+            expect(number_array.my_inject(:+)).to eql(number_array.inject(:+))
+            expect(number_array.my_inject(1, :*)).to eql(number_array.inject(1, :*))
+        end
+    end 
+    
+end 
