@@ -16,6 +16,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
+  Enabled: false
   IgnoredMethods: ['describe']
   Max: 30
 Metrics/ModuleLength:
