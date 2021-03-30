@@ -17,7 +17,7 @@ describe 'Enumerable' do
 
 	describe 'my_each_with_index' do
 		it 'cheking my_each_with_index is working' do
-			expect(number_array.my_each_with_index{ |number, index| index + 1}).to eql(number.each_with_index{ |number, index| index + 1})
+			expect(number_array.my_each_with_index{ |number, index| index + 1}).to eql(number_array.each_with_index{ |number, index| index + 1})
 			expect(hash.my_each{ |hash, index| hash if index == 0}).to eql(hash.each_with_index{ |hash, index| hash if index == 0})
 		end
 	end
@@ -38,4 +38,24 @@ describe 'Enumerable' do
 			expect(empty_array.my_all?).to be true
 		end
 	end
+    
+    describe 'my_any' do
+        it 'Checking my_any is working' do
+            expect(words_array.my_any? { |word| word.length >= 3 }).to be true
+            expect(words_array.my_any?(/d/)).to be true
+            expect(words_array.my_any?(Integer)).to be false
+            expect(empty_array.my_any?).to be false
+        end
+    end
+
+    describe 'my_none' do
+        it 'Checking my_none is working' do
+            expect(words_array.my_none?{ |word| word.length == 5 }).to be false
+            expect(words_array.my_none?(/d/)). to be false
+            expect(words_array.my_none?(Float)).to be true
+            expect(empty_array.my_none?).to be true
+            expect(false_arr.my_none?).to be true
+            expect(true_arr.my_none?).to be false
+        end
+    end
 end
