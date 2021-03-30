@@ -12,25 +12,25 @@ describe 'Enumerable' do
     it 'checking my_each is working' do
       expect(words_array.my_each { |word| word }).to eq(words_array)
       expect(hash.my_each do |key, value|
-               key if value == 'kiranitor'
-             end).to eql(hash.each do |key, value|
-                           key if value == 'kiranitor'
-                         end)
+        key if value == 'kiranitor'
+      end).to eql(hash.each do |key, value|
+        key if value == 'kiranitor'
+      end)
     end
   end
 
   describe 'my_each_with_index' do
     it 'cheking my_each_with_index is working' do
       expect(number_array.my_each_with_index do |_number, index|
-               index + 1
-             end).to eql(number_array.each_with_index do |_number, index|
-                           index + 1
-                         end)
+        index + 1
+      end).to eql(number_array.each_with_index do |_number, index|
+        index + 1
+      end)
       expect(hash.my_each do |hash, index|
-               hash if index == 0
-             end).to eql(hash.each_with_index do |hash, index|
-                           hash if index == 0
-                         end)
+        hash if index == 0
+      end).to eql(hash.each_with_index do |hash, index|
+        hash if index == 0
+      end)
     end
   end
 

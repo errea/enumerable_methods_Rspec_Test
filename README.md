@@ -8,6 +8,14 @@ This is the first project that welcomes us into the Ruby Section of the *Microve
 ### Project 2: Enumerable Methods
 This Project was collaborative, I and my coding partner learned about the Enumerable module that gets mixed into the Array and Hash classes (among others) and provides you with lots of handy iterator methods.  To prove that there's no magic to it, you're going to rebuild those methods.
 
+### Project Test Rspec on Enumerable methods using Rspec: 
+ We created our enumerable_methods inside the spec folder in the enumerable_spec.rb file.
+
+ ~~~ruby
+  run the following commands to execute the Rspec on your terminal:
+  - rspec
+~~~
+
 ### Advanced Building Blocks  (Assignment 2)
 
 <div class="lesson-content__panel" markdown="1">
